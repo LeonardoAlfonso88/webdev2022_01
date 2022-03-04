@@ -14,4 +14,8 @@
         <constructor-arg ref="InMemoryUserRepository"/>
     </bean>
 
+    <bean id="UserLogin" class="com.webdev.productsystem.Users.User.Application.Login.UserLogin" >
+        <constructor-arg ref="InMemoryUserRepository"/>
+    </bean>
+
 </beans>

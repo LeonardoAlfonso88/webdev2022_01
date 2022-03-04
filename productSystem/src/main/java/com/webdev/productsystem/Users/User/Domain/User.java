@@ -1,9 +1,15 @@
 package com.webdev.productsystem.Users.User.Domain;
 
+import com.webdev.productsystem.Users.User.Domain.Entities.UserAddress;
 import com.webdev.productsystem.Users.User.Domain.Exceptions.AuthenticateFailed;
 import com.webdev.productsystem.Users.User.Domain.ValueObjects.*;
 
+import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class User {
 
@@ -14,8 +20,10 @@ public class User {
     private UserBalance balance;
     private UserRating rating;
     private UserPassword password;
+    private Optional<List<UserAddress>> addressList;
 
-    public User(UserId userId, UserName userName, UserEmail userEmail, UserIsSeller isSeller, UserBalance balance, UserRating rating, UserPassword password) {
+    public User(UserId userId, UserName userName, UserEmail userEmail, UserIsSeller isSeller, UserBalance balance, UserRating rating, UserPassword password,
+                Optional<List<UserAddress>> addressList) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -23,6 +31,7 @@ public class User {
         this.balance = balance;
         this.rating = rating;
         this.password = password;
+        this.addressList = addressList;
     }
 
     public static User create(UserId userId, UserName userName, UserEmail userEmail, UserPassword password) {
@@ -32,7 +41,7 @@ public class User {
                             new UserIsSeller(false),
                             new UserBalance(0d),
                             new UserRating(5d),
-                            password);
+                            password, Optional.empty());
         return user;
     }
 
@@ -50,7 +59,16 @@ public class User {
             put("isSeller", isSeller.value());
             put("balance", balance.value());
             put("rating", rating.value() * 20);
+            put("address", createAddress());
         }};
         return data;
+    }
+
+    private List<HashMap<String, Object>> createAddress() {
+        List<HashMap<String, Object>> list = new ArrayList<>();
+        if (!addressList.isEmpty()) {
+            list = addressList.get().stream().map(address -> address.data()).collect(Collectors.toList());
+        }
+        return list;
     }
 }

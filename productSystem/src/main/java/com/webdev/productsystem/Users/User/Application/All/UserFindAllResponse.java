@@ -18,5 +18,4 @@ public class UserFindAllResponse {
         List<HashMap<String, Object>> response = users.stream().map(user-> user.data()).collect(Collectors.toList());
         return response;
     }
-
 }

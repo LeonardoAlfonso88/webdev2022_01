@@ -1,6 +1,7 @@
 package com.webdev.productsystem.Users.User.Infrastructure.Controllers;
 
 import com.webdev.productsystem.Users.User.Application.Create.UserCreator;
+import com.webdev.productsystem.Users.User.Application.Login.UserLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,39 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/user")
-public class UserCreateController {
+public class UserLoginController {
 
     @Autowired
-    private UserCreator creator;
+    private UserLogin login;
 
-    @PostMapping(value = "/create")
-    public ResponseEntity execute(@RequestBody UserCreatorRequest request) {
+    @PostMapping(value = "/login")
+    public ResponseEntity execute(@RequestBody UserLoginRequest request) {
         System.out.println(request);
-        creator.execute(request.getId(), request.getName(), request.getEmail(), request.getPassword());
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        login.execute(request.getEmail(), request.getPassword());
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
-    static class UserCreatorRequest {
-        private String id;
-        private String name;
+    static class UserLoginRequest {
+
         private String email;
         private String password;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
 
         public String getEmail() {
             return email;
