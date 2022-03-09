@@ -1,11 +1,14 @@
 package com.webdev.productsystem.Shared.Domain.Aggregate;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class CustomUUID {
+public class CustomUUID implements Serializable {
 
     private String value;
+
+    protected CustomUUID() {}
 
     public CustomUUID(String value) {
         validate(value);

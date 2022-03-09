@@ -4,6 +4,8 @@ import com.webdev.productsystem.Shared.Domain.Aggregate.StringValueObject;
 
 public class UserEmail extends StringValueObject {
 
+    private UserEmail() {}
+
     public UserEmail(String value) {
         validate(value);
         this.value = value;

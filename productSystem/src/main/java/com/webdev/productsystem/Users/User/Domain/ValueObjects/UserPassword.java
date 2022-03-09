@@ -4,6 +4,8 @@ import com.webdev.productsystem.Shared.Domain.Aggregate.StringValueObject;
 
 public class UserPassword extends StringValueObject {
 
+    private UserPassword() {}
+
     public UserPassword(String value) {
         validate(value);
         this.value = value;

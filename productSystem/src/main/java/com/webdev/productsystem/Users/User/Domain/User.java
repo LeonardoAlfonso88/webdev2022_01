@@ -71,4 +71,6 @@ public class User {
         }
         return list;
     }
+
+    private User() {}
 }

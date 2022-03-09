@@ -5,6 +5,8 @@ import com.webdev.productsystem.Users.User.Domain.Exceptions.LenghtInvalid;
 
 public class UserName extends StringValueObject {
 
+    private UserName() {}
+
     public UserName(String value) {
         validate(value);
         this.value = value;

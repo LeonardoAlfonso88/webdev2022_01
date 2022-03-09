@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.webdev.productsystem.Users.User.Domain.User" table="users">
+
+        <composite-id name="userId" class="com.webdev.productsystem.Users.User.Domain.ValueObjects.UserId" access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="userName" class="com.webdev.productsystem.Users.User.Domain.ValueObjects.UserName" access="field">
+            <property name="value" column="name" access="field" type="string"/>
+        </component>
+
+        <component name="userEmail" class="com.webdev.productsystem.Users.User.Domain.ValueObjects.UserEmail" access="field">
+            <property name="value" column="email" access="field" type="string"/>
+        </component>
+
+        <component name="isSeller" class="com.webdev.productsystem.Users.User.Domain.ValueObjects.UserIsSeller" access="field">
+            <property name="value" column="isSeller" access="field" type="boolean"/>
+        </component>
+
+        <component name="balance" class="com.webdev.productsystem.Users.User.Domain.ValueObjects.UserBalance" access="field">
+            <property name="value" column="balance" access="field" type="double"/>
+        </component>
+
+        <component name="rating" class="com.webdev.productsystem.Users.User.Domain.ValueObjects.UserRating" access="field">
+            <property name="value" column="rating" access="field" type="double"/>
+        </component>
+
+        <component name="password" class="com.webdev.productsystem.Users.User.Domain.ValueObjects.UserPassword" access="field">
+            <property name="value" column="password" access="field" type="string"/>
+        </component>
+
+    </class>
+</hibernate-mapping>

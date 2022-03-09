@@ -4,6 +4,8 @@ import com.webdev.productsystem.Shared.Domain.Aggregate.DoubleValueObject;
 
 public class UserBalance extends DoubleValueObject {
 
+    private UserBalance() {}
+
     public UserBalance(Double value) {
         validate(value);
         this.value = value;
