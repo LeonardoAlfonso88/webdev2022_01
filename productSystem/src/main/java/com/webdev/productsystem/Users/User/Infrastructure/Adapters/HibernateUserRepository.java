@@ -10,6 +10,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +39,17 @@ public class HibernateUserRepository extends HibernateRepository<User> implement
     }
 
     @Override
-    public User findByEmail(UserEmail email) {
-        return null;
+    public Optional<User> findByEmail(UserEmail email) {
+        User user = null;
+        CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<User> cr = cb.createQuery(User.class);
+        Root<User> root = cr.from(User.class);
+        cr.select(root).where(cb.equal(root.get("userEmail"), email));
+        List<User> users = sessionFactory.getCurrentSession().createQuery(cr).getResultList();
+        if(!users.isEmpty()) {
+            user = users.get(0);
+        }
+        return Optional.ofNullable(user);
     }
 
     @Override

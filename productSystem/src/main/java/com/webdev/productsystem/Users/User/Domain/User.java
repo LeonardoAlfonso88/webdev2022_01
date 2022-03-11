@@ -72,5 +72,7 @@ public class User {
         return list;
     }
 
-    private User() {}
+    private User() {
+        addressList = Optional.empty();
+    }
 }

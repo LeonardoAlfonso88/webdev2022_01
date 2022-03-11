@@ -6,16 +6,18 @@
     <bean id="InMemoryUserRepository" class="com.webdev.productsystem.Users.User.Infrastructure.Adapters.InMemoryUserRepository"
           scope="singleton"/>
 
+    <bean id="UserRepository" class="com.webdev.productsystem.Users.User.Infrastructure.Adapters.HibernateUserRepository" />
+
     <bean id="UserCreator" class="com.webdev.productsystem.Users.User.Application.Create.UserCreator" >
-        <constructor-arg ref="InMemoryUserRepository"/>
+        <constructor-arg ref="UserRepository"/>
     </bean>
 
     <bean id="UserFindAll" class="com.webdev.productsystem.Users.User.Application.All.UserFindAll" >
-        <constructor-arg ref="InMemoryUserRepository"/>
+        <constructor-arg ref="UserRepository"/>
     </bean>
 
     <bean id="UserLogin" class="com.webdev.productsystem.Users.User.Application.Login.UserLogin" >
-        <constructor-arg ref="InMemoryUserRepository"/>
+        <constructor-arg ref="UserRepository"/>
     </bean>
 
 </beans>

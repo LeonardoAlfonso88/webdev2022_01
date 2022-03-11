@@ -31,10 +31,10 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public User findByEmail(UserEmail email) {
+    public Optional<User> findByEmail(UserEmail email) {
         System.out.println(email.value());
         users.stream().forEach(user -> System.out.println(user.data().get("email")));
-        return users.stream().filter(user -> user.data().get("email").equals(email.value())).collect(Collectors.toList()).get(0);
+        return Optional.ofNullable(users.stream().filter(user -> user.data().get("email").equals(email.value())).collect(Collectors.toList()).get(0));
     }
 
     @Override

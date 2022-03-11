@@ -1,6 +1,7 @@
 package com.webdev.productsystem.Users.User.Domain.ValueObjects;
 
 import com.webdev.productsystem.Shared.Domain.Aggregate.StringValueObject;
+import com.webdev.productsystem.Users.User.Domain.Exceptions.InvalidUserEmail;
 
 public class UserEmail extends StringValueObject {
 
@@ -17,7 +18,7 @@ public class UserEmail extends StringValueObject {
 
     private void emailFormat(String value) {
         if (!value.contains("@")) {
-            throw new RuntimeException("Email sin @");
+            throw new InvalidUserEmail("Email sin @");
         }
     }
 }

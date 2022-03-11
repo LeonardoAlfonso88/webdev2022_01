@@ -1,6 +1,7 @@
 package com.webdev.productsystem.Users.User.Domain.ValueObjects;
 
 import com.webdev.productsystem.Shared.Domain.Aggregate.StringValueObject;
+import com.webdev.productsystem.Users.User.Domain.Exceptions.InvalidPassword;
 
 public class UserPassword extends StringValueObject {
 
@@ -17,7 +18,7 @@ public class UserPassword extends StringValueObject {
 
     private void symbolContains(String value) {
         if (!(value.contains("$") || value.contains("*"))) {
-            throw new RuntimeException("Simbolo no encontrado en la contraseña");
+            throw new InvalidPassword("Simbolo no encontrado en la contraseña");
         }
     }
 }

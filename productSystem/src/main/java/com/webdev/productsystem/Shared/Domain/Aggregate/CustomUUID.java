@@ -1,5 +1,7 @@
 package com.webdev.productsystem.Shared.Domain.Aggregate;
 
+import com.webdev.productsystem.Users.User.Domain.Exceptions.InvalidCustomUUID;
+
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
@@ -29,7 +31,7 @@ public class CustomUUID implements Serializable {
         }
         catch (Exception ex)
         {
-            throw new RuntimeException("El UUID no tiene un formato valido");
+            throw new InvalidCustomUUID("El UUID no tiene un formato valido");
         }
     }
 

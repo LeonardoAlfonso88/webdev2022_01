@@ -17,10 +17,8 @@ public class UserCreator {
     }
 
     public void execute(String userId, String userName, String userEmail, String password) {
-        System.out.println(userId.concat(" ").concat(userName).concat(" ").concat(userEmail).concat(" ").concat(password));
         User user = User.create(new UserId(userId), new UserName(userName),
                                 new UserEmail(userEmail), new UserPassword(password));
-        System.out.println(user.data());
         repository.save(user);
     }
 }
