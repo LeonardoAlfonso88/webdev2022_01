@@ -26,10 +26,10 @@ public class HibernateConfigFactory {
         sessionFactory.setDataSource(this.dataSource());
         sessionFactory.setHibernateProperties(this.hibernateProperties());
 
-        //TODO: Resources
         FileSystemResource resource1 = new FileSystemResource("./src/main/java/com/webdev/productsystem/Users/User/Infrastructure/Hibernate/User.hbm.xml");
+        FileSystemResource resource2 = new FileSystemResource("./src/main/java/com/webdev/productsystem/Users/Address/Infrastructure/Hibernate/Address.hbm.xml");
 
-        sessionFactory.setMappingLocations(resource1);
+        sessionFactory.setMappingLocations(resource1, resource2);
         return sessionFactory;
     }
 

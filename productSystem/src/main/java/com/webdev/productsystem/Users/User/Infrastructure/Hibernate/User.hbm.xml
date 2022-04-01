@@ -34,5 +34,10 @@
             <property name="value" column="password" access="field" type="string"/>
         </component>
 
+        <property name="addressList" column="address" access="field">
+            <type name="com.webdev.productsystem.Users.User.Infrastructure.Hibernate.UserAddressCustomType">
+            </type>
+        </property>
+
     </class>
 </hibernate-mapping>

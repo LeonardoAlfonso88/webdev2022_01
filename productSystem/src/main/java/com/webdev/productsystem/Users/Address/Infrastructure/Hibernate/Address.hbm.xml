@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.webdev.productsystem.Users.Address.Domain.Address" table="address">
+
+        <composite-id name="id" class="com.webdev.productsystem.Users.Address.Domain.ValueObjects.AddressId" access="field">
+            <key-property name="value" column="id" access="field" length="36"/>
+        </composite-id>
+
+        <component name="city" class="com.webdev.productsystem.Users.Address.Domain.ValueObjects.AddressCity" access="field">
+            <property name="value" column="city" access="field" type="string"/>
+        </component>
+
+        <component name="detail" class="com.webdev.productsystem.Users.Address.Domain.ValueObjects.AddressDetail" access="field">
+            <property name="value" column="detail" access="field" type="string"/>
+        </component>
+
+        <component name="additionalInfo" class="com.webdev.productsystem.Users.Address.Domain.ValueObjects.AddressAdditionalInfo" access="field">
+            <property name="value" column="additionalInfo" access="field" type="string"/>
+        </component>
+
+        <component name="postalCode" class="com.webdev.productsystem.Users.Address.Domain.ValueObjects.AddressPostalCode" access="field">
+            <property name="value" column="postalCode" access="field" type="string"/>
+        </component>
+
+        <component name="neighborhood" class="com.webdev.productsystem.Users.Address.Domain.ValueObjects.AddressNeighborhood" access="field">
+            <property name="value" column="neighborhood" access="field" type="string"/>
+        </component>
+
+        <component name="userId" class="com.webdev.productsystem.Users.Address.Domain.ValueObjects.UserId" access="field">
+            <property name="value" column="userId" access="field" type="string"/>
+        </component>
+
+    </class>
+</hibernate-mapping>

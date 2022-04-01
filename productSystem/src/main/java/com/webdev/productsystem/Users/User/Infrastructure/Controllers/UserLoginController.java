@@ -2,6 +2,7 @@ package com.webdev.productsystem.Users.User.Infrastructure.Controllers;
 
 import com.webdev.productsystem.Shared.Infrastruture.Schema.ErrorSchema;
 import com.webdev.productsystem.Users.User.Application.Login.UserLogin;
+import com.webdev.productsystem.Users.User.Application.Login.UserLoginResponse;
 import com.webdev.productsystem.Users.User.Domain.Exceptions.AuthenticateFailed;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -30,10 +31,9 @@ public class UserLoginController {
             @ApiResponse(responseCode = "401", description = "Unauthorized user", content = @Content(schema = @Schema(implementation = ErrorSchema.class))),
     })
     @PostMapping(value = "/login")
-    public ResponseEntity execute(@RequestBody UserLoginRequest request) {
-        System.out.println(request);
-        login.execute(request.getEmail(), request.getPassword());
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+    public ResponseEntity<HashMap<String, Object>> execute(@RequestBody UserLoginRequest request) {
+        UserLoginResponse response = login.execute(request.getEmail(), request.getPassword());
+        return ResponseEntity.status(HttpStatus.OK).body(response.response());
     }
 
     @ExceptionHandler(AuthenticateFailed.class)

@@ -1,5 +1,6 @@
 package com.webdev.productsystem.Users.User.Domain;
 
+import com.webdev.productsystem.Shared.Domain.Aggregate.AggregateRoot;
 import com.webdev.productsystem.Users.User.Domain.Entities.UserAddress;
 import com.webdev.productsystem.Users.User.Domain.Exceptions.AuthenticateFailed;
 import com.webdev.productsystem.Users.User.Domain.ValueObjects.*;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class User {
+public class User extends AggregateRoot {
 
     private UserId userId;
     private UserName userName;
@@ -49,6 +50,15 @@ public class User {
         if (!(this.password.equals(password) && this.userEmail.equals(userEmail))) {
             throw new AuthenticateFailed("Credenciales inválidas");
         }
+    }
+
+    public void addAddress(UserAddress userAddress) {
+        List<UserAddress> address = new ArrayList<UserAddress>();
+        if(addressList.isPresent()) {
+            address = addressList.get();
+        }
+        address.add(userAddress);
+        this.addressList = Optional.ofNullable(address);
     }
 
     public HashMap<String, Object> data() {

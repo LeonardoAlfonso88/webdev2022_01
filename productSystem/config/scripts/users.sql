@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS ProductSystem.users (
     balance         DOUBLE NOT NULL,
     rating          DOUBLE NOT NULL,
     password        VARCHAR(150) NOT NULL,
-    address         JSON default '[]' NOT NULL,
+    address         JSON NULL,
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
