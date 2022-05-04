@@ -6,16 +6,53 @@
     <bean id="InMemoryUserRepository" class="com.webdev.productsystem.Users.User.Infrastructure.Adapters.InMemoryUserRepository"
           scope="singleton"/>
 
+    <bean id="UserRepository" class="com.webdev.productsystem.Users.User.Infrastructure.Adapters.HibernateUserRepository" />
+
+    <bean id="AddressRepository" class="com.webdev.productsystem.Users.Address.Infrastructure.Adapters.HibernateAddressRepository" />
+
+    <bean id="RabbitMqPublisher" class="com.webdev.productsystem.Shared.Infrastruture.RabbitMQ.RabbitMqPublisher" />
+
+    <bean id="DomainEventInformation" class="com.webdev.productsystem.Shared.Infrastruture.RabbitMQ.DomainEventsInformation" />
+
+    <bean id="TokenGeneration" class="com.webdev.productsystem.Shared.Application.TokenGeneration" />
+
     <bean id="UserCreator" class="com.webdev.productsystem.Users.User.Application.Create.UserCreator" >
-        <constructor-arg ref="InMemoryUserRepository"/>
+        <constructor-arg ref="UserRepository"/>
+    </bean>
+
+    <bean id="RabbitMqEventBus" class="com.webdev.productsystem.Shared.Infrastruture.RabbitMQ.RabbitMqEventBus">
+        <constructor-arg ref="RabbitMqPublisher"/>
     </bean>
 
     <bean id="UserFindAll" class="com.webdev.productsystem.Users.User.Application.All.UserFindAll" >
-        <constructor-arg ref="InMemoryUserRepository"/>
+        <constructor-arg ref="UserRepository"/>
     </bean>
 
     <bean id="UserLogin" class="com.webdev.productsystem.Users.User.Application.Login.UserLogin" >
-        <constructor-arg ref="InMemoryUserRepository"/>
+        <constructor-arg ref="UserRepository"/>
+        <constructor-arg ref="TokenGeneration"/>
+    </bean>
+
+    <bean id="AddressCreator" class="com.webdev.productsystem.Users.Address.Application.Create.AddressCreator" >
+        <constructor-arg ref="AddressRepository"/>
+        <constructor-arg ref="RabbitMqEventBus"/>
+    </bean>
+
+    <bean id="DomainEventJsonDeserializer" class="com.webdev.productsystem.Shared.Infrastruture.RabbitMQ.Serializable.DomainEventJsonDeserializer" >
+        <constructor-arg ref="DomainEventInformation"/>
+    </bean>
+
+    <bean id="RabbitMqDomainEventsConsumer" class="com.webdev.productsystem.Shared.Infrastruture.RabbitMQ.RabbitMqDomainEventsConsumer" >
+        <constructor-arg ref="DomainEventInformation" />
+        <constructor-arg ref="DomainEventJsonDeserializer" />
+    </bean>
+
+    <bean id="UserAddAddress" class="com.webdev.productsystem.Users.User.Application.AddAddress.UserAddAddress" >
+        <constructor-arg ref="UserRepository"/>
+    </bean>
+
+    <bean id="AddAddressOnCreatedAddress" class="com.webdev.productsystem.Users.User.Infrastructure.Listeners.AddAddressOnCreatedAddress" >
+        <constructor-arg ref="UserAddAddress"/>
     </bean>
 
 </beans>

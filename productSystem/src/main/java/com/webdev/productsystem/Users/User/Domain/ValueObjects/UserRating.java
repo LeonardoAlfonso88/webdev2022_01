@@ -4,6 +4,8 @@ import com.webdev.productsystem.Shared.Domain.Aggregate.DoubleValueObject;
 
 public class UserRating extends DoubleValueObject {
 
+    private UserRating() {}
+
     public UserRating(Double value) {
         validate(value);
         this.value = value;

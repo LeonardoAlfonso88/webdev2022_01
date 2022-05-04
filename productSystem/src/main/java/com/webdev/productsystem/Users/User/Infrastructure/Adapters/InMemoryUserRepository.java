@@ -3,9 +3,11 @@ package com.webdev.productsystem.Users.User.Infrastructure.Adapters;
 import com.webdev.productsystem.Users.User.Domain.Ports.UserRepository;
 import com.webdev.productsystem.Users.User.Domain.User;
 import com.webdev.productsystem.Users.User.Domain.ValueObjects.UserEmail;
+import com.webdev.productsystem.Users.User.Domain.ValueObjects.UserId;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class InMemoryUserRepository implements UserRepository {
@@ -19,14 +21,30 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public User findByEmail(UserEmail email) {
-        System.out.println(email.value());
-        users.stream().forEach(user -> System.out.println(user.data().get("email")));
-        return users.stream().filter(user -> user.data().get("email").equals(email.value())).collect(Collectors.toList()).get(0);
+    public void update(User user) {
+
     }
 
-    public List<User> all() {
-        return users;
+    @Override
+    public Optional<User> find(UserId userId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> findByEmail(UserEmail email) {
+        System.out.println(email.value());
+        users.stream().forEach(user -> System.out.println(user.data().get("email")));
+        return Optional.ofNullable(users.stream().filter(user -> user.data().get("email").equals(email.value())).collect(Collectors.toList()).get(0));
+    }
+
+    @Override
+    public Optional<List<User>> all() {
+        return Optional.ofNullable(users);
+    }
+
+    @Override
+    public void delete(User user) {
+
     }
 
 }
