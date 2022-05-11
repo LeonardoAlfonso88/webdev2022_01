@@ -1,5 +1,5 @@
 import { createApp } from "vue";
-import App from "./App.vue";
+import Pokedex from "./views/pokedex/Pokedex.vue";
 import router from "./router";
 
-createApp(App).use(router).mount("#app");
+createApp(Pokedex).use(router).mount("#app");

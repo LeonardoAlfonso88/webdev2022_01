@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Cyndaquil",
+    "type": "Fuego",
+    "weight": 7.89,
+    "height": 0.5,
+    "level": 9,
+    "description": "lLorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, sed?",
+    "isCaptured": true,
+    "image": "Cyndaquil.png"
+  },
+  {
+    "name": "Bidof",
+    "type": "Tierra",
+    "weight": 9.34,
+    "height": 1.5,
+    "level": 12,
+    "description": " adipisicing elit. Pariatur, sed? lLorem ipsum dolor sit amet, consectetur",
+    "isCaptured": false,
+    "image": "Bidof.png"
+  },
+  {
+    "name": "Shinx",
+    "type": "Agua",
+    "weight": 5.89,
+    "height": 0.3,
+    "level": 7,
+    "description": "lLorem  consectetur adipisicing ipsum dolor sit amet, elit. Pariatur, sed?",
+    "isCaptured": true,
+    "image": "Shinx.png"
+  }
+]
