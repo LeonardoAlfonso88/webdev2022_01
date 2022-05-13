@@ -1,4 +1,5 @@
 <template>
+  <p>{{ title }}</p>
   <ul class="wrapper-list">
     <li
       v-for="(pokemon, index) in pokemons"
@@ -31,6 +32,12 @@ export default {
   name: "Pokedex",
   components: {
     PokemonDetail,
+  },
+  props: {
+    title: {
+      type: String,
+      required: false
+    }
   },
   setup() {
     const { pokemons,
