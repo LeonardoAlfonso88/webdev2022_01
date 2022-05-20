@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Pokedex from "../views/pokedex/Pokedex.vue";
+import Login from "../views/Login";
 
 const routes = [
   {
@@ -16,6 +17,10 @@ const routes = [
     path: "/pokedex/:title?",
     component: Pokedex,
     props: true
+  },
+  {
+    path: "/login",
+    component: Login
   },
 ];
 

@@ -1,6 +1,7 @@
 import { pokemonListService } from "../services/itemsList/pokemonListService";
 import { computed, onMounted, ref } from "vue";
 import { apiPokedex } from "../services/pokedex/apiPokedex";
+import { userStore } from "../store/userStore";
 
 export function pokedexUse() {
   const { getListPokemon } = pokemonListService();
@@ -8,6 +9,7 @@ export function pokedexUse() {
   const pokemons = ref([]);
   const pokemonsSecondGeneration = ref([])
   const actualPokemon = ref(null);
+  const { user } = userStore();
 
   onMounted(async () => {
     pokemons.value = await getListPokemon();
@@ -55,5 +57,6 @@ export function pokedexUse() {
     hasPokemon,
     getImage,
     createPokemonUse,
+    user,
   };
 }

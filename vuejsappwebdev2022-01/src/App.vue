@@ -22,6 +22,7 @@ export default {
     const title = ref("Ejemplo");
 
     onErrorCaptured((error) => {
+      console.log("El error".concat(error).concat(" llegó aquí"));
       alert(error.message);
     });
 

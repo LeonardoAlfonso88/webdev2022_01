@@ -1,5 +1,6 @@
 <template>
   <p>{{ title }}</p>
+  <p>Nombre del usuario:  {{ user.name.concat(" ").concat(user.lastName) }}</p>
   <ul class="wrapper-list">
     <li
       v-for="(pokemon, index) in pokemons"
@@ -46,7 +47,7 @@ export default {
       cleanActualPokemon,
       changePokemonName,
       hasPokemon,
-      getImage } = pokedexUse();
+      getImage, user } = pokedexUse();
 
     return {
       pokemons,
@@ -56,6 +57,7 @@ export default {
       cleanActualPokemon,
       changePokemonName,
       getImage,
+      user,
     };
   },
 };
